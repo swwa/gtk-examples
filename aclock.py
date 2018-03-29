@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+'''
+Simple Clock
+Derived from
+http://ralph-glass.homepage.t-online.de/clock/readme.html
+'''
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -9,7 +15,6 @@ import math
 import time
 
 def progress_timeout(object):
-    w, h = 600, 400
     object.queue_draw()
     return True
 
@@ -70,7 +75,7 @@ def expose(drawingarea, cr):
  
 
 window = Gtk.Window()
-window.set_title("Analogue Clock")
+window.set_title("Analog Clock")
 window.set_default_size(600, 400)
 window.connect("destroy", Gtk.main_quit)
 
@@ -78,7 +83,7 @@ drawingarea = Gtk.DrawingArea()
 
 drawingarea.connect("draw", expose)
 window.add(drawingarea)
-window.timer = GObject.timeout_add (1000, progress_timeout, window)
+window.timer = GObject.timeout_add (500, progress_timeout, window)
 window.show_all()
 
 Gtk.main()
